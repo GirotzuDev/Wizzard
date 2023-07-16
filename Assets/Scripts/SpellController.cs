@@ -46,7 +46,6 @@ public class SpellController : MonoBehaviour
         textComponents[2] = textRight;
         textComponents[3] = textDown;
 
-        Debug.Log("Inicializando");
     }
 
 
@@ -88,7 +87,6 @@ public class SpellController : MonoBehaviour
 
     public void SetTextDown(string message)
     {
-        Debug.Log(textDown);
         if (textDown != null)
         {
             textComponents[3].text = message;
@@ -97,7 +95,6 @@ public class SpellController : MonoBehaviour
 
     public void spelling(int idx)
     {
-        Debug.Log(KeyCode.H);
 
         if(textComponents[0].text == "")
         {
@@ -111,17 +108,26 @@ public class SpellController : MonoBehaviour
                     }
                     else
                     {
-                        SetTextDown(textComponents[3].text.Substring(1));
+                        if (Input.GetKeyDown(StringToKeyCode(textComponents[3].text.Substring(0,1))))
+                        {
+                            SetTextDown(textComponents[3].text.Substring(1));
+                        }
                     }
                 }
                 else
                 {
-                    SetTextRight(textComponents[2].text.Substring(1));
+                    if (Input.GetKeyDown(StringToKeyCode(textComponents[2].text.Substring(0,1))))
+                    {
+                        SetTextRight(textComponents[2].text.Substring(1));
+                    }
                 }
             }
             else
             {
-                SetTextUp(textComponents[1].text.Substring(1));
+                if (Input.GetKeyDown(StringToKeyCode(textComponents[1].text.Substring(0,1))))
+                {
+                    SetTextUp(textComponents[1].text.Substring(1));
+                }
             }
         }
         else
